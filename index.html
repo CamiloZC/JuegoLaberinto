@@ -9,7 +9,7 @@
     <script src="js/jquery-1.10.2.min.js"></script>
     
 </head>
-<body>
+<body style="font-family: roboto; overflow: hidden; background-color: deepskyblue;">
     
     <script type="text/javascript">
         paper.install(window);
@@ -29,6 +29,7 @@
         var aspaVertical;
         var turbina;
         var aspaTurbina;
+        var aspaTurbina2;
         var helicopteroLayer;
         var helicopteroVelocidad;
         var helicopteroAngulo;
@@ -100,6 +101,7 @@
             view.onFrame = function (event) {
                 if (helicoptero != null) {
                     aspaTurbina.rotate(3, turbina);
+                    aspaTurbina2.rotate(3, turbina);
                     // Se actualiza la ubicacion del helicoptero, segun la velocidad
                     var xp = helicoptero.position.x + (Math.cos(helicopteroAngulo) * helicopteroVelocidad);
                     var yp = helicoptero.position.y + (Math.sin(helicopteroAngulo) * helicopteroVelocidad);
@@ -146,18 +148,11 @@
 
             chasis = new Path.Rectangle(new Point(60, 45), new Size(80, 15));
             chasis.style = {
-                fillColor: 'white',
                 strokeColor: 'black'
             };
+            chasis.fillColor = new Color(0.26, 0.24, 0.24);
             helicoptero.addChild(chasis);
             
-            cabina = new Path.Ellipse({
-                point: [20, 20],
-                size: [80, 50],
-                fillColor: 'black'
-            });
-            helicoptero.addChild(cabina);
-
             soportePatin1 = new Path.Line({
                 from: [50, 30],
                 to: [30, 10],
@@ -171,6 +166,13 @@
                 strokeColor: 'black'
             });
             helicoptero.addChild(soportePatin2);
+
+            cabina = new Path.Ellipse({
+                point: [20, 20],
+                size: [80, 50],  
+            });
+            cabina.fillColor = new Color(0.36, 0.34, 0.34);
+            helicoptero.addChild(cabina);
 
             patin = new Path.Rectangle(new Point(20, 5), new Size(80, 5));
             patin.style = {
@@ -186,7 +188,7 @@
             };
             helicoptero.addChild(soporteAspas);
 
-            aspaSuperior = new Path.Rectangle(new Point(25, 80), new Size(70, 10));
+            aspaSuperior = new Path.Rectangle(new Point(10, 80), new Size(100, 5));
             aspaSuperior.style = {
                 fillColor: 'black',
                 strokeColor: 'black'
@@ -207,6 +209,13 @@
                 strokeColor: 'white'
             });
             helicoptero.addChild(aspaTurbina);
+
+            aspaTurbina2 = new Path.Line({
+                from: [126, 53],
+                to: [144, 53],
+                strokeColor: 'white'
+            });
+            helicoptero.addChild(aspaTurbina2);
 
             helicopteroLayer.addChild(helicoptero);
             helicopteroVelocidad = 0;
